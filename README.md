@@ -40,7 +40,10 @@ A toolkit for [arXiv](https://arxiv.org/) papers daily reading. The script will 
 >>> python main.py
 ```
 ```
-# 4. use crontab command to run periodically
+# 4. set your paths at 'src/run.sh'
+```
+```
+# 5. use crontab command to run periodically
 >>> crontab -e
 # add '0 8 * * * cd /YOUR_PATH/arxiv_daily/src/ && sh run.sh >> /YOUR_PATH/arxiv_daily/src/log' at the end to run at 8 a.m. evryday and save log
 ```
