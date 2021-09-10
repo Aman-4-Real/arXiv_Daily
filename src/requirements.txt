@@ -1,0 +1,8 @@
+numpy
+requests
+bs4
+tqdm
+uvicorn
+fastapi
+aiofiles
+jinjia2

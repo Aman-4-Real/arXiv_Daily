@@ -46,7 +46,6 @@ async def main(request: Request):
                 cnt += 1
             res[date_name[:4] + '-' + date_name[4:6] + '-' + date_name[6:8]] = data
     res_idx = list(sorted(res.keys()))[::-1]
-    print(files, res_idx)
     return templates.TemplateResponse("arxiv_daily.html", {"request": request, "res": res, "res_idx": res_idx, "keywords": keywords, "cnt": cnt})
 
 
