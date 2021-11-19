@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 '''
-@Date     : 2021.09.10
+@Date     : 2021.11.19
 @Author   : Aman
 @Contact  : cq335955781@gmail.com
 '''
@@ -34,18 +34,24 @@ async def main(request: Request):
     print(now_time + " _Request_")
     res = {}
     cnt = 0
-    for _, dirs, files in os.walk("../data/"):
+    dedup = {}
+    for _, dirs, files in os.walk("/home/caoqian/arxiv_daily/data/"):
+        files = list(sorted(files))[::-1]
         for file in files:
+            # print(file)
             date_name = file.split('.')[0]
             data = dict()
-            data = dict(data, **read_data("../data/" + file))
+            data = dict(data, **read_data("/home/caoqian/arxiv_daily/data/" + file))
             for item in data:
-                data[item]['title'] = data[item]['title'].replace('Title:', '')
-                data[item]['authors'] = data[item]['authors'].replace('Authors:', '')
-                data[item]['abstract'] = data[item]['abstract'].replace('Abstract: ', '').replace('\n', ' ')
-                cnt += 1
+                if data[item]['title'] not in dedup:
+                    data[item]['title'] = data[item]['title'].replace('Title:', '')
+                    data[item]['authors'] = data[item]['authors'].replace('Authors:', '')
+                    data[item]['abstract'] = data[item]['abstract'].replace('Abstract: ', '').replace('\n', ' ')
+                    dedup[data[item]['title']] = 1
+                    cnt += 1
             res[date_name[:4] + '-' + date_name[4:6] + '-' + date_name[6:8]] = data
     res_idx = list(sorted(res.keys()))[::-1]
+    # print(files, res_idx)
     return templates.TemplateResponse("arxiv_daily.html", {"request": request, "res": res, "res_idx": res_idx, "keywords": keywords, "cnt": cnt})
 
 
