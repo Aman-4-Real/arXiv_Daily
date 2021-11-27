@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 '''
-@Date     : 2021.11.19
+@Date     : 2021.11.27
 @Author   : Aman
 @Contact  : cq335955781@gmail.com
 '''
@@ -34,7 +34,7 @@ async def main(request: Request):
     print(now_time + " _Request_")
     res = {}
     cnt = 0
-    dedup = {}
+    dedup = set()
     for _, dirs, files in os.walk("/home/caoqian/arxiv_daily/data/"):
         files = list(sorted(files))[::-1]
         for file in files:
@@ -42,14 +42,20 @@ async def main(request: Request):
             date_name = file.split('.')[0]
             data = dict()
             data = dict(data, **read_data("/home/caoqian/arxiv_daily/data/" + file))
+            dedup_data = {}
             for item in data:
                 if data[item]['title'] not in dedup:
-                    data[item]['title'] = data[item]['title'].replace('Title:', '')
-                    data[item]['authors'] = data[item]['authors'].replace('Authors:', '')
-                    data[item]['abstract'] = data[item]['abstract'].replace('Abstract: ', '').replace('\n', ' ')
-                    dedup[data[item]['title']] = 1
+                    # print(data[item].keys()) # ['title', 'authors', 'submitted_date', 'abstract', 'pdf_link']
+                    tmp = {}
+                    tmp['title'] = data[item]['title'].replace('Title:', '')
+                    tmp['authors'] = data[item]['authors'].replace('Authors:', '')
+                    tmp['abstract'] = data[item]['abstract'].replace('Abstract: ', '').replace('\n', ' ')
+                    tmp['pdf_link'] = data[item]['pdf_link']
+                    tmp['submitted_date'] = data[item]['submitted_date']
+                    dedup_data[item] = tmp
+                    dedup.add(data[item]['title'])
                     cnt += 1
-            res[date_name[:4] + '-' + date_name[4:6] + '-' + date_name[6:8]] = data
+            res[date_name[:4] + '-' + date_name[4:6] + '-' + date_name[6:8]] = dedup_data
     res_idx = list(sorted(res.keys()))[::-1]
     # print(files, res_idx)
     return templates.TemplateResponse("arxiv_daily.html", {"request": request, "res": res, "res_idx": res_idx, "keywords": keywords, "cnt": cnt})
