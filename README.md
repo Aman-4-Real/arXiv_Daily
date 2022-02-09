@@ -52,4 +52,4 @@ DONE & ENJOY!
 
 ## A Case
 
-[www.aman.love:9002](http://www.aman.love:9002): for papers of NLG/Dialogue/Multimodality, update at around 0840 everyday.
+[www.aman.love:9002](http://www.aman.love:9002): for papers of NLG/Dialogue/Multimodality, update at around 0840(UTC+8) everyday.
