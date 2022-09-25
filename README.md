@@ -50,6 +50,6 @@ A toolkit for [arXiv](https://arxiv.org/) papers daily reading. The script will 
 DONE & ENJOY!
 
 
-## A Case
+## Demo
 
 [www.aman.love:9002](http://www.aman.love:9002): for papers of NLG/Dialogue/Multimodality, update at around 0840(UTC+8) everyday.
