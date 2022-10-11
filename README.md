@@ -30,7 +30,7 @@ A toolkit for [arXiv](https://arxiv.org/) papers daily reading. The script will 
 ```
 # 1. environment preparation
 >>> git clone https://github.com/Aman-4-Real/arXiv_Daily.git
->>> cd src && pip install -r requirements
+>>> cd src && pip install -r requirements.txt
 ```
 ```
 # 2. define your own urls and keywords and modify 'src/configs.py'
