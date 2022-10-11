@@ -8,6 +8,6 @@
 # customize urls and kewords
 urls = ["https://arxiv.org/list/cs.AI/new?skip=0&show=2000",
         "https://arxiv.org/list/cs.CL/new?skip=0&show=2000"]
-keywords = ["natural language generation", "text generation", "poem generation", "poetry generation", "lyrics generation",
+keywords = ["natural language generation", "text generation", 
             "dialog", "dialogue", "conversation",
-            "multimodal", "multi-modal"]
+            "multimodal", "multi-modal", "multimodality"]
