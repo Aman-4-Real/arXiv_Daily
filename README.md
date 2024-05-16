@@ -49,7 +49,3 @@ A toolkit for [arXiv](https://arxiv.org/) papers daily reading. The script will 
 ```
 DONE & ENJOY!
 
-
-## Demo
-
-[www.aman4real.cn:9002](http://82.156.199.67:9002/): for papers of NLG/Dialogue/Multimodality, update at around 0840(UTC+8) everyday.
